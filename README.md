@@ -45,9 +45,15 @@ git clone https://github.com/your-username/smart-fertilizer-recommendation.git
 cd smart-fertilizer-recommendation
 ```
 
-### 3. Run flask app
+### 3. Run jupyter notebook
+```bash
+pip install notebook
+jupyter notebook model_training.ipynb
+```
+
+### 4. Run flask app
 ```bash
 python app.js
 ```
 
-### 4. Run Html page
+### 5. Run Html page
