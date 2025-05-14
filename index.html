@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fertilizer Recommendation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f0f4f8;
+    }
+    h2 {
+      color: #2e7d32;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      padding: 8px;
+      width: 300px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🌾 Fertilizer Recommendation Tool</h2>
+
+  <form id="fertilizerForm">
+    <label>Temperature (°C): <input type="number" name="Temparature" required></label>
+    <label>Humidity (%): <input type="number" name="Humidity" required></label>
+    <label>Moisture (%): <input type="number" name="Moisture" required></label>
+    
+    <label>Soil Type:
+      <select name="Soil Type" required>
+        <option>Loamy</option>
+        <option>Clayey</option>
+        <option>Sandy</option>
+        <option>Black</option>
+        <option>Red</option>
+      </select>
+    </label>
+    
+    <label>Crop Type:
+      <select name="Crop Type" required>
+        <option>Sugarcane</option>
+        <option>Wheat</option>
+        <option>Rice</option>
+        <option>Maize</option>
+        <option>Millets</option>
+        <option>Pulses</option>
+      </select>
+    </label>
+
+    <label>Nitrogen: <input type="number" name="Nitrogen" required></label>
+    <label>Potassium: <input type="number" name="Potassium" required></label>
+    <label>Phosphorous: <input type="number" name="Phosphorous" required></label>
+
+    <button type="submit">Get Recommendation</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('fertilizerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      // Convert number strings to numbers
+      Object.keys(data).forEach(key => {
+        if (!isNaN(data[key])) data[key] = Number(data[key]);
+      });
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        console.log(response)
+
+        const result = await response.json();
+        if (result.recommended_fertilizer) {
+          document.getElementById('result').innerText = "✅ Recommended Fertilizer: " + result.recommended_fertilizer;
+        } else {
+          document.getElementById('result').innerText = "❌ Error: " + (result.error || "Unknown error");
+        }
+      } catch (err) {
+        document.getElementById('result').innerText = "❌ Failed to connect to server.";
+      }
+    });
+  </script>
+
+</body>
+</html>
+

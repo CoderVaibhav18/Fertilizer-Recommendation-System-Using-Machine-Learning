@@ -1,0 +1,40 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.pyo
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Model and encoder files
+*.pkl
+
+# Logs and temp files
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VSCode settings
+.vscode/
+
+# Flask runtime files
+instance/
+*.db
+*.sqlite3
+
+# Data files (optional: only exclude if you don’t need to commit them)
+*.csv
+*.xlsx
+*.json
