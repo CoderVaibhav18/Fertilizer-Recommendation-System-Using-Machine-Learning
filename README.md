@@ -39,3 +39,10 @@ Follow these steps to run the project locally:
 ```bash
 git clone https://github.com/your-username/smart-fertilizer-recommendation.git
 cd smart-fertilizer-recommendation
+```
+### 1. Run flask app
+
+```bash
+python app.js
+```
+### 2. Run Html page
