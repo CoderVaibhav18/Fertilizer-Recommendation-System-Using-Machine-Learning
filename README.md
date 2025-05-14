@@ -34,15 +34,20 @@ Many small-scale farmers still depend on harmful chemical fertilizers and lack a
 
 Follow these steps to run the project locally:
 
-### 1. Clone the Repository
+### 1. Download this Dataset
+```bash
+https://www.kaggle.com/datasets/gdabhishek/fertilizer-prediction/data
+```
 
+### 2. Clone the Repository
 ```bash
 git clone https://github.com/your-username/smart-fertilizer-recommendation.git
 cd smart-fertilizer-recommendation
 ```
-### 1. Run flask app
 
+### 3. Run flask app
 ```bash
 python app.js
 ```
-### 2. Run Html page
+
+### 4. Run Html page
